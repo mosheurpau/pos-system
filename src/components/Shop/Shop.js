@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
+import Cart from "../Cart/Cart";
 import Product from "../Product/Product";
 
 const Shop = () => {
   const [products, setProducts] = useState([]);
+  const [cart, setCart] = useState([]);
 
   useEffect(() => {
     fetch("products.json")
@@ -10,24 +12,35 @@ const Shop = () => {
       .then((data) => setProducts(data));
   }, []);
 
+  const handleAddToCart = (selectedProduct) => {
+    console.log(selectedProduct);
+    let newCart = [];
+    const exists = cart.find((product) => product.id === selectedProduct.id);
+    if (!exists) {
+      selectedProduct.quantity = 1;
+      newCart = [...cart, selectedProduct];
+    } else {
+      const rest = cart.filter((product) => product.id !== selectedProduct.id);
+      exists.quantity = exists.quantity + 1;
+      newCart = [...rest, exists];
+    }
+    setCart(newCart);
+  };
+
   return (
     <div className="mx-auto">
       <div className="hero min-h-screen">
         <div class="hero-content flex-col lg:flex-row-reverse">
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5 mx-auto">
             {products.map((product) => (
-              <Product key={product.id} product={product}></Product>
+              <Product
+                key={product.id}
+                product={product}
+                handleAddToCart={handleAddToCart}
+              ></Product>
             ))}
           </div>
-          <div>
-            <h1 class="text-5xl font-bold">Box Office News!</h1>
-            <p class="py-6">
-              Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
-              excepturi exercitationem quasi. In deleniti eaque aut repudiandae
-              et a id nisi.
-            </p>
-            <button class="btn btn-primary">Get Started</button>
-          </div>
+          <div>{<Cart cart={cart}></Cart>}</div>
         </div>
       </div>
     </div>

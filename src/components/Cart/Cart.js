@@ -1,8 +1,13 @@
 import { faTrashCan, faPlus, faMinus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useState } from "react";
+import React from "react";
 
-const Cart = ({ cart, handlePlusQuantity, handleMinusQuantity }) => {
+const Cart = ({
+  cart,
+  handlePlusQuantity,
+  handleMinusQuantity,
+  handleDeleteItem,
+}) => {
   console.log("hh", cart);
 
   return (
@@ -55,6 +60,7 @@ const Cart = ({ cart, handlePlusQuantity, handleMinusQuantity }) => {
               <td>
                 <button class="btn btn-outline border-0 btn-sm btn-neutral">
                   <FontAwesomeIcon
+                    onClick={() => handleDeleteItem(carItem)}
                     className="text-red-500 text-2xl"
                     icon={faTrashCan}
                   />

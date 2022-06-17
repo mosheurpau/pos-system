@@ -55,6 +55,11 @@ const Shop = () => {
     setCart(MinusCart);
   };
 
+  const handleDeleteItem = (product) => {
+    const rest = cart.filter((item) => item.id !== product.id);
+    setCart(rest);
+  };
+
   return (
     <div className="mx-auto">
       <div className="hero min-h-screen">
@@ -74,6 +79,7 @@ const Shop = () => {
                 cart={cart}
                 handlePlusQuantity={handlePlusQuantity}
                 handleMinusQuantity={handleMinusQuantity}
+                handleDeleteItem={handleDeleteItem}
               ></Cart>
             }
           </div>

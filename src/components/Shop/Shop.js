@@ -41,6 +41,20 @@ const Shop = () => {
     setCart(plusCart);
   };
 
+  const handleMinusQuantity = (selected) => {
+    // console.log(selected);
+    let MinusCart = [];
+    const exists = cart.find((product) => product.id === selected.id);
+    if (!exists) {
+      MinusCart = [...cart, selected];
+    } else {
+      const rest = cart.filter((product) => product.id !== selected.id);
+      exists.quantity = exists.quantity - 1;
+      MinusCart = [...rest, exists];
+    }
+    setCart(MinusCart);
+  };
+
   return (
     <div className="mx-auto">
       <div className="hero min-h-screen">
@@ -55,7 +69,13 @@ const Shop = () => {
             ))}
           </div>
           <div>
-            {<Cart cart={cart} handlePlusQuantity={handlePlusQuantity}></Cart>}
+            {
+              <Cart
+                cart={cart}
+                handlePlusQuantity={handlePlusQuantity}
+                handleMinusQuantity={handleMinusQuantity}
+              ></Cart>
+            }
           </div>
         </div>
       </div>

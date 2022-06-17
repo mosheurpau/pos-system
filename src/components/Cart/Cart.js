@@ -2,17 +2,8 @@ import { faTrashCan, faPlus, faMinus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
 
-const Cart = ({ cart, handlePlusQuantity }) => {
+const Cart = ({ cart, handlePlusQuantity, handleMinusQuantity }) => {
   console.log("hh", cart);
-
-  // const [cart, setCart] = useState([]);
-
-  // const handlePlusQuantity = () => {
-  //   const newCart = { ...cart };
-  //   newCart.quantity = newCart.quantity - 1;
-  //   console.log(newCart);
-  //   setCart(newCart);
-  // };
 
   return (
     <div>
@@ -53,6 +44,7 @@ const Cart = ({ cart, handlePlusQuantity }) => {
                   <div> {carItem?.quantity}</div>
                   <div>
                     <FontAwesomeIcon
+                      onClick={() => handleMinusQuantity(carItem)}
                       className="text-white rounded-full bg-slate-500 p-1 ml-3"
                       icon={faMinus}
                     />

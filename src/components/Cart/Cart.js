@@ -1,9 +1,19 @@
 import { faTrashCan, faPlus, faMinus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React from "react";
+import React, { useState } from "react";
 
-const Cart = ({ cart }) => {
+const Cart = ({ cart, handlePlusQuantity }) => {
   console.log("hh", cart);
+
+  // const [cart, setCart] = useState([]);
+
+  // const handlePlusQuantity = () => {
+  //   const newCart = { ...cart };
+  //   newCart.quantity = newCart.quantity - 1;
+  //   console.log(newCart);
+  //   setCart(newCart);
+  // };
+
   return (
     <div>
       <table class="table table-zebra w-full text-gray-600 font-bold">
@@ -35,6 +45,7 @@ const Cart = ({ cart }) => {
                 <div className="flex">
                   <div>
                     <FontAwesomeIcon
+                      onClick={() => handlePlusQuantity(carItem)}
                       className="text-white rounded-full bg-slate-500 p-1 border-5  mr-3"
                       icon={faPlus}
                     />
@@ -52,7 +63,7 @@ const Cart = ({ cart }) => {
               <td>
                 <button class="btn btn-outline border-0 btn-sm btn-neutral">
                   <FontAwesomeIcon
-                    className="text-red-500 text-3xl"
+                    className="text-red-500 text-2xl"
                     icon={faTrashCan}
                   />
                 </button>

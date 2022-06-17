@@ -16,9 +16,11 @@ const Product = ({ product, handleAddToCart }) => {
           class="rounded-xl"
         />
       </figure>
-      <div class="card-body items-center text-center py-2 px-0">
+      <div class="card-body items-center text-center py-0 px-0">
         <p>${price}</p>
-        <p>{name}</p>
+        <p className="px-2 mt-0">
+          <small>{name}</small>
+        </p>
       </div>
     </div>
   );

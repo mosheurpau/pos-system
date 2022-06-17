@@ -13,7 +13,7 @@ const Shop = () => {
   }, []);
 
   const handleAddToCart = (selectedProduct) => {
-    console.log(selectedProduct);
+    // console.log(selectedProduct);
     let newCart = [];
     const exists = cart.find((product) => product.id === selectedProduct.id);
     if (!exists) {
@@ -25,6 +25,20 @@ const Shop = () => {
       newCart = [...rest, exists];
     }
     setCart(newCart);
+  };
+
+  const handlePlusQuantity = (selected) => {
+    // console.log(selected);
+    let plusCart = [];
+    const exists = cart.find((product) => product.id === selected.id);
+    if (!exists) {
+      plusCart = [...cart, selected];
+    } else {
+      const rest = cart.filter((product) => product.id !== selected.id);
+      exists.quantity = exists.quantity + 1;
+      plusCart = [...rest, exists];
+    }
+    setCart(plusCart);
   };
 
   return (
@@ -40,7 +54,9 @@ const Shop = () => {
               ></Product>
             ))}
           </div>
-          <div>{<Cart cart={cart}></Cart>}</div>
+          <div>
+            {<Cart cart={cart} handlePlusQuantity={handlePlusQuantity}></Cart>}
+          </div>
         </div>
       </div>
     </div>

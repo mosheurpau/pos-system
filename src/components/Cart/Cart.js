@@ -8,29 +8,41 @@ const Cart = ({
   handleMinusQuantity,
   handleDeleteItem,
 }) => {
-  console.log("hh", cart);
+  // console.log("hh", cart);
+
+  let total = 0;
+  let shipping = 0;
+  let quantity = 0;
+  for (const product of cart) {
+    quantity = quantity + product.quantity;
+    total = total + product.price * product.quantity;
+    shipping = shipping + product.shipping;
+  }
+  const tax = parseFloat((total * 0.1).toFixed(2));
+  const discount = parseFloat((total * 0.05).toFixed(2));
+  const grandTotal = total + shipping + tax;
 
   return (
     <div>
-      <table class="table table-zebra w-full text-gray-600 font-bold">
+      <table class="table table-compact w-full text-gray-600 font-bold">
         <thead>
           <tr>
             <th>Index</th>
             <th>Picture</th>
             <th>Name</th>
-            <th>Price</th>
-            <th>Quantity</th>
-            <th>Total Price</th>
+            <th></th>
+            <th></th>
+            <th></th>
             <th>Delete</th>
           </tr>
         </thead>
         <tbody>
           {cart?.map((carItem, index) => (
-            <tr key={carItem.id} carPart={carItem}>
+            <tr key={carItem.id} carPart={carItem} class="hover">
               <td>{index + 1}</td>
               <td>
                 <div class="avatar">
-                  <div class="w-16 rounded-xl">
+                  <div class="w-12 rounded-xl">
                     <img src={carItem?.img} alt="pic" />
                   </div>
                 </div>
@@ -70,6 +82,34 @@ const Cart = ({
           ))}
         </tbody>
       </table>
+      <div className="grid grid-cols-2 mt-2">
+        <div></div>
+        <div className="pr-5">
+          <div className="flex justify-between py-2 border-t-2">
+            <p>Sub Total:</p>
+            <h2 className="font-bold"> ${total}</h2>
+          </div>
+          <div className="flex justify-between py-2 border-t-2">
+            <p>Tax:</p>
+            <h2 className="font-bold">${tax}</h2>
+          </div>
+          <div className="flex justify-between py-2 border-t-2">
+            <p>Shipping:</p>
+            <h2 className="font-bold">${shipping}</h2>
+          </div>
+          <div className="flex justify-between py-2 border-t-2">
+            <p className="text-blue-500 font-bold">Discount on Cart:</p>
+            <h2 className="font-bold">${discount}</h2>
+          </div>
+        </div>
+      </div>
+      <div className="grid grid-cols-2 text-left rounded-md p-3 text-blue-500 bg-blue-100 ">
+        <p>Selected Items ({quantity})</p>
+        <div className="flex justify-between font-bold">
+          <h2 className="">Grand Total:</h2>
+          <h5> ${grandTotal.toFixed(2)}</h5>
+        </div>
+      </div>
     </div>
   );
 };

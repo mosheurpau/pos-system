@@ -30,64 +30,66 @@ const Cart = ({
 
   return (
     <div>
-      <table className="table table-compact w-full text-gray-600 font-bold">
-        <thead>
-          <tr>
-            <th>Index</th>
-            <th>Picture</th>
-            <th>Name</th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th>Delete</th>
-          </tr>
-        </thead>
-        <tbody>
-          {cart?.map((carItem, index) => (
-            <tr key={carItem.id} carPart={carItem} className="hover">
-              <td>{index + 1}</td>
-              <td>
-                <div className="avatar">
-                  <div className="w-12 rounded-xl">
-                    <img src={carItem?.img} alt="pic" />
-                  </div>
-                </div>
-              </td>
-              <td>{carItem?.name}</td>
-              <td>${carItem?.price}</td>
-              <td>
-                <div className="flex">
-                  <div>
-                    <FontAwesomeIcon
-                      onClick={() => handlePlusQuantity(carItem)}
-                      className="text-white rounded-full bg-slate-500 p-1 border-5  mr-3"
-                      icon={faPlus}
-                    />
-                  </div>
-                  <div> {carItem?.quantity}</div>
-                  <div>
-                    <FontAwesomeIcon
-                      onClick={() => handleMinusQuantity(carItem)}
-                      className="text-white rounded-full bg-slate-500 p-1 ml-3"
-                      icon={faMinus}
-                    />
-                  </div>
-                </div>
-              </td>
-              <td>${carItem?.quantity * carItem?.price}</td>
-              <td>
-                <button className="btn btn-outline border-0 btn-sm btn-neutral">
-                  <FontAwesomeIcon
-                    onClick={() => handleDeleteItem(carItem)}
-                    className="text-red-500 text-2xl"
-                    icon={faTrashCan}
-                  />
-                </button>
-              </td>
+      <div className="overflow-x-auto">
+        <table className="table table-compact w-full text-gray-600 font-bold">
+          <thead>
+            <tr>
+              <th>Index</th>
+              <th>Picture</th>
+              <th>Name</th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th>Delete</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {cart?.map((carItem, index) => (
+              <tr key={carItem.id} carPart={carItem} className="hover">
+                <td>{index + 1}</td>
+                <td>
+                  <div className="avatar">
+                    <div className="w-12 rounded-xl">
+                      <img src={carItem?.img} alt="pic" />
+                    </div>
+                  </div>
+                </td>
+                <td>{carItem?.name}</td>
+                <td>${carItem?.price}</td>
+                <td>
+                  <div className="flex">
+                    <div>
+                      <FontAwesomeIcon
+                        onClick={() => handlePlusQuantity(carItem)}
+                        className="text-white rounded-full bg-slate-500 p-1 border-5  mr-3"
+                        icon={faPlus}
+                      />
+                    </div>
+                    <div> {carItem?.quantity}</div>
+                    <div>
+                      <FontAwesomeIcon
+                        onClick={() => handleMinusQuantity(carItem)}
+                        className="text-white rounded-full bg-slate-500 p-1 ml-3"
+                        icon={faMinus}
+                      />
+                    </div>
+                  </div>
+                </td>
+                <td>${carItem?.quantity * carItem?.price}</td>
+                <td>
+                  <button className="btn btn-outline border-0 btn-sm btn-neutral">
+                    <FontAwesomeIcon
+                      onClick={() => handleDeleteItem(carItem)}
+                      className="text-red-500 text-2xl"
+                      icon={faTrashCan}
+                    />
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
       <div className="grid grid-cols-2 mt-2">
         <div></div>
         <div className="pr-5">
@@ -116,20 +118,20 @@ const Cart = ({
           <h5> ${grandTotal.toFixed(2)}</h5>
         </div>
       </div>
-      <div className="grid grid-cols-4 gap-3 mt-3">
-        <button class="btn gap-2 bg-red-100 border-0 text-red-500 font-bold normal-case text-lg px-0">
+      <div className="grid grid-cols-4 gap-3 my-3">
+        <button class="btn gap-2 bg-red-100 border-0 text-red-500 font-bold normal-case text-md px-0">
           <XCircleIcon className="h-6 w-6 text-red-500" />
           Cancel
         </button>
-        <button class="btn gap-2 bg-blue-100 border-0 text-blue-500 font-bold normal-case text-lg px-0">
+        <button class="btn gap-2 bg-blue-100 border-0 text-blue-500 font-bold normal-case text-md px-0">
           <HandIcon className="h-6 w-6 text-blue-500" />
           Hold
         </button>
-        <button class="btn gap-2 bg-blue-100 border-0 text-blue-500 font-bold normal-case text-lg px-0">
+        <button class="btn gap-2 bg-blue-100 border-0 text-blue-500 font-bold normal-case text-md px-0">
           <CurrencyDollarIcon className="h-6 w-6 text-blue-500" />
           Discount
         </button>
-        <button class="btn gap-2 bg-blue-100 border-0 text-blue-500 font-bold normal-case text-lg px-0">
+        <button class="btn gap-2 bg-blue-100 border-0 text-blue-500 font-bold normal-case text-md px-0">
           <CashIcon className="h-6 w-6 text-blue-500" />
           Pay Now
         </button>

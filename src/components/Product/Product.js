@@ -5,20 +5,16 @@ const Product = ({ product, handleAddToCart }) => {
   return (
     <div
       onClick={() => handleAddToCart(product)}
-      class="card shadow-xl mx-auto"
+      class=" border-2 shadow-xl mx-auto"
     >
       <figure>
-        <img
-          height={400}
-          width={400}
-          src={img}
-          alt="Shoes"
-          class="rounded-xl"
-        />
+        <img height={400} width={400} src={img} alt="TShart" />
       </figure>
-      <div class="card-body items-center text-center py-0 px-0">
-        <p>${price}</p>
-        <p className="px-2 mt-0">
+      <div class="items-center text-center py-0 px-0">
+        <div className="border-b-2">
+          <p>${price}</p>
+        </div>
+        <p className="px-2 py-0 m-0">
           <small>{name}</small>
         </p>
       </div>

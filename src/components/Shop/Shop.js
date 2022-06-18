@@ -64,9 +64,9 @@ const Shop = () => {
 
   return (
     <div className="mx-auto">
-      <div className="hero min-h-screen">
-        <div class="hero-content flex-col lg:flex-row-reverse">
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5 mx-auto">
+      <div className="mt-10">
+        <div class="grid grid-cols-1 gap-5 md:grid-cols-2 px-10 mx-auto">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 mx-auto md:order-2 border-2 p-5">
             {products.map((product) => (
               <Product
                 key={product.id}
@@ -75,7 +75,7 @@ const Shop = () => {
               ></Product>
             ))}
           </div>
-          <div>
+          <div className="md:order-1">
             {
               <Cart
                 cart={cart}

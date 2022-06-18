@@ -1,5 +1,11 @@
 import { faTrashCan, faPlus, faMinus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  XCircleIcon,
+  HandIcon,
+  CurrencyDollarIcon,
+  CashIcon,
+} from "@heroicons/react/outline";
 import React from "react";
 
 const Cart = ({
@@ -24,7 +30,7 @@ const Cart = ({
 
   return (
     <div>
-      <table class="table table-compact w-full text-gray-600 font-bold">
+      <table className="table table-compact w-full text-gray-600 font-bold">
         <thead>
           <tr>
             <th>Index</th>
@@ -38,11 +44,11 @@ const Cart = ({
         </thead>
         <tbody>
           {cart?.map((carItem, index) => (
-            <tr key={carItem.id} carPart={carItem} class="hover">
+            <tr key={carItem.id} carPart={carItem} className="hover">
               <td>{index + 1}</td>
               <td>
-                <div class="avatar">
-                  <div class="w-12 rounded-xl">
+                <div className="avatar">
+                  <div className="w-12 rounded-xl">
                     <img src={carItem?.img} alt="pic" />
                   </div>
                 </div>
@@ -70,7 +76,7 @@ const Cart = ({
               </td>
               <td>${carItem?.quantity * carItem?.price}</td>
               <td>
-                <button class="btn btn-outline border-0 btn-sm btn-neutral">
+                <button className="btn btn-outline border-0 btn-sm btn-neutral">
                   <FontAwesomeIcon
                     onClick={() => handleDeleteItem(carItem)}
                     className="text-red-500 text-2xl"
@@ -109,6 +115,24 @@ const Cart = ({
           <h2 className="">Grand Total:</h2>
           <h5> ${grandTotal.toFixed(2)}</h5>
         </div>
+      </div>
+      <div className="grid grid-cols-4 gap-3 mt-3">
+        <button class="btn gap-2 bg-red-100 border-0 text-red-500 font-bold normal-case text-lg px-0">
+          <XCircleIcon className="h-6 w-6 text-red-500" />
+          Cancel
+        </button>
+        <button class="btn gap-2 bg-blue-100 border-0 text-blue-500 font-bold normal-case text-lg px-0">
+          <HandIcon className="h-6 w-6 text-blue-500" />
+          Hold
+        </button>
+        <button class="btn gap-2 bg-blue-100 border-0 text-blue-500 font-bold normal-case text-lg px-0">
+          <CurrencyDollarIcon className="h-6 w-6 text-blue-500" />
+          Discount
+        </button>
+        <button class="btn gap-2 bg-blue-100 border-0 text-blue-500 font-bold normal-case text-lg px-0">
+          <CashIcon className="h-6 w-6 text-blue-500" />
+          Pay Now
+        </button>
       </div>
     </div>
   );

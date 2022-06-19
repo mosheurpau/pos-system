@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Cart from "../Cart/Cart";
 import Product from "../Product/Product";
+import { ChevronLeftIcon, PlusIcon } from "@heroicons/react/solid";
 
 const Shop = () => {
   const [products, setProducts] = useState([]);
@@ -84,6 +85,71 @@ const Shop = () => {
                 handleDeleteItem={handleDeleteItem}
               ></Cart>
             }
+            <input
+              type="checkbox"
+              id="add-customer-modal"
+              class="modal-toggle"
+            />
+            <label for="add-customer-modal" class="modal cursor-pointer">
+              <label class="modal-box relative" for="">
+                <div>
+                  <div className="flex">
+                    <ChevronLeftIcon className="mx-5 h-8 w-8 text-blue-500" />
+                    <h2 className="text-2xl">Add New Customer</h2>
+                  </div>
+                  <div class="card-body">
+                    <div class="form-control">
+                      <input
+                        type="text"
+                        placeholder="Name"
+                        class="input input-bordered"
+                        required
+                      />
+                    </div>
+                    <div class="form-control">
+                      <input
+                        type="text"
+                        placeholder="email"
+                        class="input input-bordered"
+                      />
+                    </div>
+                    <div class="form-control">
+                      <input
+                        type="number"
+                        placeholder="Phone"
+                        class="input input-bordered"
+                      />
+                    </div>
+                    <div class="form-control">
+                      <input
+                        type="text"
+                        placeholder="Currency"
+                        class="input input-bordered"
+                      />
+                    </div>
+                    <div class="form-control">
+                      <input
+                        type="text"
+                        placeholder="TAX ID"
+                        class="input input-bordered"
+                      />
+                    </div>
+                    <label class="label">
+                      <a
+                        to="#"
+                        class="label-text-alt link link-hover text-blue-500 font-bold flex"
+                      >
+                        <PlusIcon className="mr-2 h-4 w-4 text-blue-500 font-bold" />
+                        Add More Details
+                      </a>
+                    </label>
+                    <div class="form-control mt-6">
+                      <button class="btn btn-primary">Update</button>
+                    </div>
+                  </div>
+                </div>
+              </label>
+            </label>
           </div>
         </div>
       </div>

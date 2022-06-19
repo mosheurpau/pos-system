@@ -5,7 +5,7 @@ const Product = ({ product, handleAddToCart }) => {
   return (
     <div
       onClick={() => handleAddToCart(product)}
-      class=" border-2 shadow-xl mx-auto"
+      class="border-2 h-48 w-28 shadow-xl mx-auto"
     >
       <figure>
         <img height={400} width={400} src={img} alt="TShart" />
@@ -14,7 +14,7 @@ const Product = ({ product, handleAddToCart }) => {
         <div className="border-b-2">
           <p>${price}</p>
         </div>
-        <p className="px-2 py-0 m-0">
+        <p className="px-2 py-2 m-0">
           <small>{name}</small>
         </p>
       </div>

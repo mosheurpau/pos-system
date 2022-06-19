@@ -5,7 +5,10 @@ import {
   HandIcon,
   CurrencyDollarIcon,
   CashIcon,
+  PlusCircleIcon,
+  PencilAltIcon,
 } from "@heroicons/react/outline";
+import { UserCircleIcon } from "@heroicons/react/solid";
 import React from "react";
 
 const Cart = ({
@@ -30,23 +33,30 @@ const Cart = ({
 
   return (
     <div>
-      <div className="overflow-x-auto">
-        <table className="table table-compact w-full text-gray-600 font-bold">
+      <div className="flex justify-between p-4 rounded bg-blue-100 ">
+        <div className="">
+          <label for="add-customer-modal" class="flex modal-button">
+            <UserCircleIcon className="h-6 w-6 text-blue-500" />
+            <span className="text-blue-500 font-bold ml-2">Steve Jobs</span>
+          </label>
+        </div>
+        <div>
+          <label for="add-customer-modal" class="m-0 modal-button">
+            <PlusCircleIcon className="h-6 w-6 text-blue-500" />
+          </label>
+        </div>
+      </div>
+      <div className="overflow-x-auto overflow-y-auto h-96">
+        <table className="table table-compact w-full text-gray-600 font-bold ">
           <thead>
-            <tr>
-              <th>Index</th>
-              <th>Picture</th>
-              <th>Name</th>
-              <th></th>
-              <th></th>
-              <th></th>
-              <th>Delete</th>
-            </tr>
+            <tr></tr>
           </thead>
           <tbody>
             {cart?.map((carItem, index) => (
               <tr key={carItem.id} carPart={carItem} className="hover">
-                <td>{index + 1}</td>
+                <td>
+                  <PencilAltIcon className="h-6 w-6 text-gray-500" />
+                </td>
                 <td>
                   <div className="avatar">
                     <div className="w-12 rounded-xl">

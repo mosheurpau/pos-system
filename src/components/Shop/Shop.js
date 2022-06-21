@@ -6,6 +6,21 @@ import { ChevronLeftIcon, PlusIcon } from "@heroicons/react/solid";
 const Shop = () => {
   const [products, setProducts] = useState([]);
   const [cart, setCart] = useState([]);
+  const [payCancel, setPayCancel] = useState(true);
+  const [payNow, setPayNow] = useState(false);
+  const [grandTotal, setGrandTotal] = useState(0);
+
+  const PayButtonHandling = (data, total) => {
+    setGrandTotal(total);
+    // console.log(data, total);
+    if (data === "payCancel") {
+      setPayCancel(true);
+      setPayNow(false);
+    } else if (data === "payNow") {
+      setPayCancel(false);
+      setPayNow(true);
+    }
+  };
 
   useEffect(() => {
     fetch("products.json")
@@ -40,6 +55,8 @@ const Shop = () => {
       plusCart = [...rest, exists];
     }
     setCart(plusCart);
+    setPayCancel(false);
+    setPayNow(true);
   };
 
   const handleMinusQuantity = (selected) => {
@@ -56,26 +73,53 @@ const Shop = () => {
       MinusCart = [...rest, exists];
     }
     setCart(MinusCart);
+    setPayCancel(false);
+    setPayNow(true);
   };
 
   const handleDeleteItem = (product) => {
     const rest = cart.filter((item) => item.id !== product.id);
     setCart(rest);
+    setPayCancel(false);
+    setPayNow(true);
   };
 
   return (
     <div className="mx-auto">
       <div className="mt-10">
-        <div class="grid grid-cols-1 gap-5 md:grid-cols-2 px-10 mx-auto">
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 mx-auto md:order-2 border-2 p-5">
-            {products.map((product) => (
-              <Product
-                key={product.id}
-                product={product}
-                handleAddToCart={handleAddToCart}
-              ></Product>
-            ))}
-          </div>
+        <div class="grid grid-cols-1 gap-5 md:grid-cols-2 mx-auto">
+          {payCancel && (
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 mx-auto md:order-2 border-2 p-5">
+              {products.map((product) => (
+                <Product
+                  key={product.id}
+                  product={product}
+                  handleAddToCart={handleAddToCart}
+                ></Product>
+              ))}
+            </div>
+          )}
+
+          {payNow && (
+            <div className="md:order-2  mx-5">
+              <div className="flex justify-between items-center px-10 py-5 rounded-md text-black bg-gray-100">
+                <h5 className="text-lg ">Order Amount</h5>
+
+                <h5 className="text-3xl font-bold">
+                  {" "}
+                  ${grandTotal.toFixed(2)}
+                </h5>
+              </div>
+              <h2>{grandTotal.toFixed(2)}</h2>
+              <button
+                className="btn"
+                onClick={() => PayButtonHandling("payCancel")}
+              >
+                Cancel
+              </button>
+            </div>
+          )}
+
           <div className="md:order-1">
             {
               <Cart
@@ -83,6 +127,7 @@ const Shop = () => {
                 handlePlusQuantity={handlePlusQuantity}
                 handleMinusQuantity={handleMinusQuantity}
                 handleDeleteItem={handleDeleteItem}
+                PayButtonHandling={PayButtonHandling}
               ></Cart>
             }
             <input

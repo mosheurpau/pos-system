@@ -16,9 +16,9 @@ const Cart = ({
   handlePlusQuantity,
   handleMinusQuantity,
   handleDeleteItem,
+  PayButtonHandling,
 }) => {
   // console.log("hh", cart);
-
   let total = 0;
   let shipping = 0;
   let quantity = 0;
@@ -141,7 +141,10 @@ const Cart = ({
           <CurrencyDollarIcon className="h-6 w-6 text-blue-500" />
           Discount
         </button>
-        <button class="btn gap-2 bg-blue-100 border-0 text-blue-500 font-bold normal-case text-md px-0">
+        <button
+          onClick={() => PayButtonHandling("payNow", grandTotal)}
+          class="btn gap-2 bg-blue-100 border-0 text-blue-500 font-bold normal-case text-md px-0"
+        >
           <CashIcon className="h-6 w-6 text-blue-500" />
           Pay Now
         </button>

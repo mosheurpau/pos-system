@@ -2,6 +2,12 @@ import React, { useEffect, useState } from "react";
 import Cart from "../Cart/Cart";
 import Product from "../Product/Product";
 import { ChevronLeftIcon, PlusIcon } from "@heroicons/react/solid";
+import {
+  CashIcon,
+  CreditCardIcon,
+  UserIcon,
+  XCircleIcon,
+} from "@heroicons/react/outline";
 
 const Shop = () => {
   const [products, setProducts] = useState([]);
@@ -55,8 +61,8 @@ const Shop = () => {
       plusCart = [...rest, exists];
     }
     setCart(plusCart);
-    setPayCancel(false);
-    setPayNow(true);
+    setPayCancel(true);
+    setPayNow(false);
   };
 
   const handleMinusQuantity = (selected) => {
@@ -73,21 +79,21 @@ const Shop = () => {
       MinusCart = [...rest, exists];
     }
     setCart(MinusCart);
-    setPayCancel(false);
-    setPayNow(true);
+    setPayCancel(true);
+    setPayNow(false);
   };
 
   const handleDeleteItem = (product) => {
     const rest = cart.filter((item) => item.id !== product.id);
     setCart(rest);
-    setPayCancel(false);
-    setPayNow(true);
+    setPayCancel(true);
+    setPayNow(false);
   };
 
   return (
     <div className="mx-auto">
       <div className="mt-10">
-        <div class="grid grid-cols-1 gap-5 md:grid-cols-2 mx-auto">
+        <div class="grid grid-cols-1 gap-2 md:grid-cols-2 mx-5">
           {payCancel && (
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 mx-auto md:order-2 border-2 p-5">
               {products.map((product) => (
@@ -101,14 +107,67 @@ const Shop = () => {
           )}
 
           {payNow && (
-            <div className="md:order-2  mx-5">
-              <div className="flex justify-between items-center px-10 py-5 rounded-md text-black bg-gray-100">
+            <div className="order-2">
+              <div className="flex justify-between items-center px-10 py-5 rounded-md text-black bg-gray-100 mb-3">
                 <h5 className="text-lg ">Order Amount</h5>
 
                 <h5 className="text-3xl font-bold">
                   {" "}
                   ${grandTotal.toFixed(2)}
                 </h5>
+              </div>
+              <div className="grid grid-cols-1 gap-2 md:grid-flow-row-dense md:grid-cols-3 bg-blue-200">
+                <div className="text-gray-500 ">
+                  <div>
+                    <button className=" border-0 normal-case bg-gray-100 text-gray-500 focus:text-blue-500 focus:bg-blue-100 w-full flex items-center text-2xl py-3 justify-start ">
+                      <CashIcon className="h-7 w-7 mx-5" />
+                      Cash
+                    </button>
+                  </div>
+                  <div>
+                    <button className=" border-0 normal-case bg-gray-100 text-gray-500 focus:text-blue-500 focus:bg-blue-100 w-full flex items-center text-2xl py-3 justify-start ">
+                      <CreditCardIcon className="h-7 w-7 mx-5" />
+                      Card
+                    </button>
+                  </div>
+                  <div>
+                    <button className=" border-0 normal-case bg-gray-100 text-gray-500 focus:text-blue-500 focus:bg-blue-100 w-full flex items-center text-2xl py-3 justify-start ">
+                      <UserIcon className="h-7 w-7 mx-5" />
+                      On Account
+                    </button>
+                  </div>
+                  <div className="mb-96">
+                    <button className=" border-0 normal-case bg-gray-100 text-gray-500 focus:text-blue-500 focus:bg-blue-100 w-full flex items-center text-2xl py-3 justify-start ">
+                      <CreditCardIcon className="h-7 w-7 mx-5" />
+                      Cheque
+                    </button>
+                  </div>
+                </div>
+                <div className="bg-green-200 col-span-2">
+                  <div className="mb-96">
+                    <h2>bhbjnb </h2>
+                  </div>
+                  <div className="flex flex-wrap items-center justify-evenly">
+                    <div className="mb-5">
+                      <button
+                        onClick={() => PayButtonHandling("payCancel")}
+                        class="btn gap-2 bg-red-100 border-0 text-red-500 normal-case text-2xl px-5"
+                      >
+                        <XCircleIcon className="h-6 w-6 text-red-500" />
+                        Cancel
+                      </button>
+                    </div>
+                    <div className="mb-5">
+                      <button
+                        onClick={() => PayButtonHandling("payCancel")}
+                        class="btn gap-2 bg-blue-500 border-0 text-white normal-case text-md px-5 text-md md:text-2xl"
+                      >
+                        <CashIcon className="h-6 w-6 text-white-500" />
+                        Complete Payment
+                      </button>
+                    </div>
+                  </div>
+                </div>
               </div>
               <h2>{grandTotal.toFixed(2)}</h2>
               <button

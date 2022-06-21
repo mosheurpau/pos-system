@@ -15,7 +15,12 @@ const Shop = () => {
   const [payCancel, setPayCancel] = useState(true);
   const [payNow, setPayNow] = useState(false);
   const [grandTotal, setGrandTotal] = useState(0);
+  const [cash, setCash] = useState(true);
+  const [card, setCard] = useState(false);
+  const [account, setAccount] = useState(false);
+  const [cheque, setCheque] = useState(false);
 
+  // handle pay and cancel button
   const PayButtonHandling = (data, total) => {
     setGrandTotal(total);
     // console.log(data, total);
@@ -28,12 +33,40 @@ const Shop = () => {
     }
   };
 
+  // handle all payment system form
+  const paymentSystemFormHandling = (data) => {
+    // console.log(data);
+    if (data === "cash") {
+      setCash(true);
+      setCard(false);
+      setAccount(false);
+      setCheque(false);
+    } else if (data === "card") {
+      setCash(false);
+      setCard(true);
+      setAccount(false);
+      setCheque(false);
+    } else if (data === "account") {
+      setCash(false);
+      setCard(false);
+      setAccount(true);
+      setCheque(false);
+    } else if (data === "cheque") {
+      setCash(false);
+      setCard(false);
+      setAccount(false);
+      setCheque(true);
+    }
+  };
+
+  // load data
   useEffect(() => {
     fetch("products.json")
       .then((res) => res.json())
       .then((data) => setProducts(data));
   }, []);
 
+  // cart handling
   const handleAddToCart = (selectedProduct) => {
     // console.log(selectedProduct);
     let newCart = [];
@@ -49,8 +82,8 @@ const Shop = () => {
     setCart(newCart);
   };
 
+  // quantity handling for plus button
   const handlePlusQuantity = (selected) => {
-    // console.log(selected);
     let plusCart = [];
     const exists = cart.find((product) => product.id === selected.id);
     if (!exists) {
@@ -65,8 +98,8 @@ const Shop = () => {
     setPayNow(false);
   };
 
+  // quantity handling for minus button
   const handleMinusQuantity = (selected) => {
-    // console.log(selected);
     let MinusCart = [];
     const exists = cart.find((product) => product.id === selected.id);
     if (!exists) {
@@ -83,6 +116,7 @@ const Shop = () => {
     setPayNow(false);
   };
 
+  // handle remove product from cart
   const handleDeleteItem = (product) => {
     const rest = cart.filter((item) => item.id !== product.id);
     setCart(rest);
@@ -93,7 +127,8 @@ const Shop = () => {
   return (
     <div className="mx-auto">
       <div className="mt-10">
-        <div class="grid grid-cols-1 gap-2 md:grid-cols-2 mx-5">
+        <div className="grid grid-cols-1 gap-2 md:grid-cols-2 mx-5">
+          {/* show all products shop */}
           {payCancel && (
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 mx-auto md:order-2 border-2 p-5">
               {products.map((product) => (
@@ -106,62 +141,194 @@ const Shop = () => {
             </div>
           )}
 
+          {/* when click pay now button then show all Payment system icon and button */}
           {payNow && (
             <div className="order-2">
+              {/* Show total order Amount  */}
               <div className="flex justify-between items-center px-10 py-5 rounded-md text-black bg-gray-100 mb-3">
-                <h5 className="text-lg ">Order Amount</h5>
-
+                <h5 className="text-lg">Order Amount</h5>
                 <h5 className="text-3xl font-bold">
                   {" "}
                   ${grandTotal.toFixed(2)}
                 </h5>
               </div>
-              <div className="grid grid-cols-1 gap-2 md:grid-flow-row-dense md:grid-cols-3 bg-blue-200">
+              <div className="grid grid-cols-1 gap-2 md:grid-flow-row-dense md:grid-cols-3 bg-gray-100 pt-10 rounded-md">
                 <div className="text-gray-500 ">
                   <div>
-                    <button className=" border-0 normal-case bg-gray-100 text-gray-500 focus:text-blue-500 focus:bg-blue-100 w-full flex items-center text-2xl py-3 justify-start ">
+                    <button
+                      onClick={() => paymentSystemFormHandling("cash")}
+                      className=" border-0 normal-case bg-gray-100 text-gray-500 focus:text-blue-500 focus:bg-blue-100 w-full flex items-center text-2xl py-3 justify-start "
+                    >
                       <CashIcon className="h-7 w-7 mx-5" />
                       Cash
                     </button>
                   </div>
                   <div>
-                    <button className=" border-0 normal-case bg-gray-100 text-gray-500 focus:text-blue-500 focus:bg-blue-100 w-full flex items-center text-2xl py-3 justify-start ">
+                    <button
+                      onClick={() => paymentSystemFormHandling("card")}
+                      className=" border-0 normal-case bg-gray-100 text-gray-500 focus:text-blue-500 focus:bg-blue-100 w-full flex items-center text-2xl py-3 justify-start "
+                    >
                       <CreditCardIcon className="h-7 w-7 mx-5" />
                       Card
                     </button>
                   </div>
                   <div>
-                    <button className=" border-0 normal-case bg-gray-100 text-gray-500 focus:text-blue-500 focus:bg-blue-100 w-full flex items-center text-2xl py-3 justify-start ">
+                    <button
+                      onClick={() => paymentSystemFormHandling("account")}
+                      className=" border-0 normal-case bg-gray-100 text-gray-500 focus:text-blue-500 focus:bg-blue-100 w-full flex items-center text-2xl py-3 justify-start "
+                    >
                       <UserIcon className="h-7 w-7 mx-5" />
                       On Account
                     </button>
                   </div>
-                  <div className="mb-96">
-                    <button className=" border-0 normal-case bg-gray-100 text-gray-500 focus:text-blue-500 focus:bg-blue-100 w-full flex items-center text-2xl py-3 justify-start ">
+                  <div>
+                    <button
+                      onClick={() => paymentSystemFormHandling("cheque")}
+                      className=" border-0 normal-case bg-gray-100 text-gray-500 focus:text-blue-500 focus:bg-blue-100 w-full flex items-center text-2xl py-3 justify-start "
+                    >
                       <CreditCardIcon className="h-7 w-7 mx-5" />
                       Cheque
                     </button>
                   </div>
                 </div>
-                <div className="bg-green-200 col-span-2">
-                  <div className="mb-96">
-                    <h2>bhbjnb </h2>
+
+                {/* All Payment system from  */}
+                <div className="col-span-2">
+                  <div className="mb-10 mx-10">
+                    {/* show cash Payment system from */}
+                    {cash && (
+                      <div>
+                        <form className="w-full max-w-sm">
+                          <div className="flex items-center border-b border-gray-500 py-2">
+                            <input
+                              className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
+                              type="text"
+                              placeholder="Your Name"
+                              required
+                            />
+                          </div>
+                          <div className="flex items-center border-b border-gray-500 py-2">
+                            <input
+                              className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
+                              type="text"
+                              placeholder="Your Phone Number"
+                              required
+                            />
+                          </div>
+                          <div className="flex items-center border-b border-gray-500 py-2">
+                            <input
+                              className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
+                              type="text"
+                              placeholder="Your Address"
+                              required
+                            />
+                          </div>
+                        </form>
+                      </div>
+                    )}
+
+                    {/* Card Payment system from */}
+                    {card && (
+                      <div>
+                        <form className="w-full max-w-sm">
+                          <div className="flex items-center border-b border-gray-500 py-2">
+                            <input
+                              className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
+                              type="text"
+                              placeholder="Card Name"
+                              required
+                            />
+                          </div>
+                          <div className="flex items-center border-b border-gray-500 py-2">
+                            <input
+                              className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
+                              type="text"
+                              placeholder="Card Number"
+                              required
+                            />
+                          </div>
+                          <div className="flex items-center border-b border-gray-500 py-2">
+                            <input
+                              className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
+                              type="text"
+                              placeholder="Card Expire Date"
+                              required
+                            />
+                          </div>
+                          <div className="flex items-center border-b border-gray-500 py-2">
+                            <input
+                              className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
+                              type="text"
+                              placeholder="Card Screen"
+                              required
+                            />
+                          </div>
+                        </form>
+                      </div>
+                    )}
+
+                    {/* Account Payment system from */}
+                    {account && (
+                      <div>
+                        <form className="w-full max-w-sm">
+                          <div className="flex items-center border-b border-gray-500 py-2">
+                            <input
+                              className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
+                              type="text"
+                              placeholder="Bank Name"
+                              required
+                            />
+                          </div>
+                          <div className="flex items-center border-b border-gray-500 py-2">
+                            <input
+                              className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
+                              type="text"
+                              placeholder="Account Number"
+                              required
+                            />
+                          </div>
+                        </form>
+                      </div>
+                    )}
+
+                    {/* Cheque Payment system from */}
+                    {cheque && (
+                      <div>
+                        <form className="w-full max-w-sm">
+                          <div className="flex items-center border-b border-gray-500 py-2">
+                            <input
+                              className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
+                              type="text"
+                              placeholder="Bank Name"
+                              required
+                            />
+                          </div>
+                          <div className="flex items-center border-b border-gray-500 py-2">
+                            <input
+                              className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
+                              type="text"
+                              placeholder="Cheque Number"
+                              required
+                            />
+                          </div>
+                        </form>
+                      </div>
+                    )}
                   </div>
-                  <div className="flex flex-wrap items-center justify-evenly">
+
+                  {/*  Payment cancel and Payment completed button  */}
+                  <div className="flex flex-wrap items-center justify-evenly mt-56 mb-10">
                     <div className="mb-5">
                       <button
                         onClick={() => PayButtonHandling("payCancel")}
-                        class="btn gap-2 bg-red-100 border-0 text-red-500 normal-case text-2xl px-5"
+                        className="btn gap-2 bg-red-100 border-0 text-red-500 normal-case text-2xl px-5"
                       >
                         <XCircleIcon className="h-6 w-6 text-red-500" />
                         Cancel
                       </button>
                     </div>
                     <div className="mb-5">
-                      <button
-                        onClick={() => PayButtonHandling("payCancel")}
-                        class="btn gap-2 bg-blue-500 border-0 text-white normal-case text-md px-5 text-md md:text-2xl"
-                      >
+                      <button className="btn gap-2 bg-blue-500 border-0 text-white normal-case text-md px-5 text-md md:text-2xl">
                         <CashIcon className="h-6 w-6 text-white-500" />
                         Complete Payment
                       </button>
@@ -169,16 +336,10 @@ const Shop = () => {
                   </div>
                 </div>
               </div>
-              <h2>{grandTotal.toFixed(2)}</h2>
-              <button
-                className="btn"
-                onClick={() => PayButtonHandling("payCancel")}
-              >
-                Cancel
-              </button>
             </div>
           )}
 
+          {/* Card section  */}
           <div className="md:order-1">
             {
               <Cart
@@ -192,63 +353,65 @@ const Shop = () => {
             <input
               type="checkbox"
               id="add-customer-modal"
-              class="modal-toggle"
+              className="modal-toggle"
             />
-            <label for="add-customer-modal" class="modal cursor-pointer">
-              <label class="modal-box relative" for="">
+
+            {/* Handle modal for added new customer information  */}
+            <label for="add-customer-modal" className="modal cursor-pointer">
+              <label className="modal-box relative" for="">
                 <div>
                   <div className="flex">
                     <ChevronLeftIcon className="mx-5 h-8 w-8 text-blue-500" />
                     <h2 className="text-2xl">Add New Customer</h2>
                   </div>
-                  <div class="card-body">
-                    <div class="form-control">
+                  <div className="card-body">
+                    <div className="form-control">
                       <input
                         type="text"
                         placeholder="Name"
-                        class="input input-bordered"
+                        className="input input-bordered"
                         required
                       />
                     </div>
-                    <div class="form-control">
+                    <div className="form-control">
                       <input
                         type="text"
                         placeholder="email"
-                        class="input input-bordered"
+                        className="input input-bordered"
                       />
                     </div>
-                    <div class="form-control">
+                    <div className="form-control">
                       <input
                         type="number"
                         placeholder="Phone"
-                        class="input input-bordered"
+                        className="input input-bordered"
                       />
                     </div>
-                    <div class="form-control">
+                    <div className="form-control">
                       <input
                         type="text"
                         placeholder="Currency"
-                        class="input input-bordered"
+                        className="input input-bordered"
                       />
                     </div>
-                    <div class="form-control">
+                    <div className="form-control">
                       <input
                         type="text"
                         placeholder="TAX ID"
-                        class="input input-bordered"
+                        className="input input-bordered"
                       />
                     </div>
-                    <label class="label">
+                    <label className="label">
                       <a
                         to="#"
-                        class="label-text-alt link link-hover text-blue-500 font-bold flex"
+                        className="label-text-alt link link-hover text-blue-500 font-bold flex"
                       >
                         <PlusIcon className="mr-2 h-4 w-4 text-blue-500 font-bold" />
                         Add More Details
                       </a>
                     </label>
-                    <div class="form-control mt-6">
-                      <button class="btn btn-primary">Update</button>
+                    <div className="form-control mt-6">
+                      <button className="btn btn-primary">Update</button>
                     </div>
                   </div>
                 </div>

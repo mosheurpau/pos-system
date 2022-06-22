@@ -3,6 +3,7 @@ import React from "react";
 const Product = ({ product, handleAddToCart }) => {
   const { name, price, img } = product;
   return (
+    // show all products
     <div
       onClick={() => handleAddToCart(product)}
       class="border-2 h-48 w-28 shadow-xl mx-auto"

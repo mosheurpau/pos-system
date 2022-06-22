@@ -18,7 +18,7 @@ const Cart = ({
   handleDeleteItem,
   PayButtonHandling,
 }) => {
-  // console.log("hh", cart);
+  // all calculation handling
   let total = 0;
   let shipping = 0;
   let quantity = 0;
@@ -33,6 +33,7 @@ const Cart = ({
 
   return (
     <div>
+      {/* customer details header  */}
       <div className="flex justify-between p-4 rounded bg-blue-100 ">
         <div>
           <label for="add-customer-modal" class="flex modal-button">
@@ -46,6 +47,7 @@ const Cart = ({
           </label>
         </div>
       </div>
+      {/* show cart item table  */}
       <div className="overflow-x-auto overflow-y-auto h-96">
         <table className="table table-compact w-full text-gray-600 font-bold ">
           <thead>
@@ -100,6 +102,8 @@ const Cart = ({
           </tbody>
         </table>
       </div>
+
+      {/* show all calculation  */}
       <div className="grid grid-cols-2 mt-2">
         <div></div>
         <div className="pr-5">

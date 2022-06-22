@@ -138,6 +138,8 @@ const Cart = ({
           <h5> ${grandTotal.toFixed(2)}</h5>
         </div>
       </div>
+
+      {/* show cart all bottom button */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3 my-3">
         <button className="btn gap-2 bg-red-100 border-0 text-red-500 font-bold normal-case text-md px-0">
           <XCircleIcon className="h-6 w-6 text-red-500" />

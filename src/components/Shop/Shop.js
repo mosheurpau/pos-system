@@ -1,13 +1,20 @@
 import React, { useEffect, useState } from "react";
 import Cart from "../Cart/Cart";
 import Product from "../Product/Product";
-import { ChevronLeftIcon, PlusIcon } from "@heroicons/react/solid";
+import {
+  ChevronLeftIcon,
+  MenuIcon,
+  PlusCircleIcon,
+  StopIcon,
+} from "@heroicons/react/solid";
 import {
   CashIcon,
   CreditCardIcon,
   UserIcon,
   XCircleIcon,
   SearchIcon,
+  ShoppingBagIcon,
+  PencilAltIcon,
 } from "@heroicons/react/outline";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBagShopping, faBarcode } from "@fortawesome/free-solid-svg-icons";
@@ -549,6 +556,33 @@ const Shop = () => {
 
           {/* Card section  */}
           <div className="md:order-1">
+            {/* card top button header  */}
+            <div className="grid my-5">
+              <div className="grid grid-cols-3 md:grid-cols-5 gap-3">
+                <button className="btn outline-none bg-transparent hover:bg-transparent border-0 pl-0">
+                  <MenuIcon className="h-10 w-20 text-black" />
+                </button>
+                <button className="btn gap-2 bg-blue-100 border-0 text-blue-500 font-bold normal-case text-md px-3">
+                  <PencilAltIcon className="h-6 w-6 text-blue-500" />
+                  Note
+                </button>
+                <button className="btn gap-2 bg-blue-100 border-0 text-blue-500 font-bold normal-case text-md px-0">
+                  <ShoppingBagIcon className="h-6 w-6 text-blue-500" />
+                  Shipping
+                </button>
+                <button className="btn gap-2 bg-blue-100 border-0 text-blue-500 font-bold normal-case text-md px-0">
+                  <StopIcon className="h-6 w-6 text-blue-500" />
+                  Hold Orders
+                </button>
+                <button
+                  onClick={() => PayButtonHandling("payNow", grandTotal)}
+                  className="btn gap-2 bg-blue-100 border-0 text-blue-500 font-bold normal-case text-md px-0"
+                >
+                  <PlusCircleIcon className="h-6 w-6 text-blue-500" />
+                  New Item
+                </button>
+              </div>
+            </div>
             {
               <Cart
                 cart={cart}
@@ -614,7 +648,7 @@ const Shop = () => {
                         href="/"
                         className="label-text-alt link link-hover text-blue-500 font-bold flex"
                       >
-                        <PlusIcon className="mr-2 h-4 w-4 text-blue-500 font-bold" />
+                        <PlusCircleIcon className="mr-2 h-4 w-4 text-blue-500 font-bold" />
                         Add More Details
                       </a>
                     </label>

@@ -19,3 +19,4 @@ For Live Site Link [Click Here](https://mosheur-pos.netlify.app/).
 - Display all Payment form
 - Add customer detail
 - Calculation All Products Price
+- Responsive design

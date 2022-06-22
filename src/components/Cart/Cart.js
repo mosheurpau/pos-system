@@ -1,4 +1,8 @@
-import { faTrashCan, faPlus, faMinus } from "@fortawesome/free-solid-svg-icons";
+import {
+  faTrashCan,
+  faPlusCircle,
+  faMinusCircle,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   XCircleIcon,
@@ -75,16 +79,16 @@ const Cart = ({
                     <div>
                       <FontAwesomeIcon
                         onClick={() => handlePlusQuantity(carItem)}
-                        className="text-white rounded-full bg-slate-500 p-1 border-5  mr-3"
-                        icon={faPlus}
+                        className="mr-3 text-2xl"
+                        icon={faPlusCircle}
                       />
                     </div>
                     <div> {carItem?.quantity}</div>
                     <div>
                       <FontAwesomeIcon
                         onClick={() => handleMinusQuantity(carItem)}
-                        className="text-white rounded-full bg-slate-500 p-1 ml-3"
-                        icon={faMinus}
+                        className="ml-3 text-2xl"
+                        icon={faMinusCircle}
                       />
                     </div>
                   </div>
@@ -134,7 +138,7 @@ const Cart = ({
           <h5> ${grandTotal.toFixed(2)}</h5>
         </div>
       </div>
-      <div className="grid grid-cols-4 gap-3 my-3">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 my-3">
         <button className="btn gap-2 bg-red-100 border-0 text-red-500 font-bold normal-case text-md px-0">
           <XCircleIcon className="h-6 w-6 text-red-500" />
           Cancel

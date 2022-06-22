@@ -6,12 +6,12 @@ const Product = ({ product, handleAddToCart }) => {
     // show all products
     <div
       onClick={() => handleAddToCart(product)}
-      class="border-2 h-48 w-28 shadow-xl mx-auto"
+      className="border-2 h-48 w-28 shadow-xl mx-auto"
     >
       <figure>
         <img height={400} width={400} src={img} alt="TShart" />
       </figure>
-      <div class="items-center text-center py-0 px-0">
+      <div className="items-center text-center py-0 px-0">
         <div className="border-b-2">
           <p>${price}</p>
         </div>

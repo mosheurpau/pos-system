@@ -36,13 +36,13 @@ const Cart = ({
       {/* customer details header  */}
       <div className="flex justify-between p-4 rounded bg-blue-100 ">
         <div>
-          <label for="add-customer-modal" class="flex modal-button">
+          <label for="add-customer-modal" className="flex modal-button">
             <UserCircleIcon className="h-6 w-6 text-blue-500" />
             <span className="text-blue-500 font-bold ml-2">Steve Jobs</span>
           </label>
         </div>
         <div>
-          <label for="add-customer-modal" class="m-0 modal-button">
+          <label for="add-customer-modal" className="m-0 modal-button">
             <PlusCircleIcon className="h-6 w-6 text-blue-500" />
           </label>
         </div>
@@ -133,21 +133,21 @@ const Cart = ({
         </div>
       </div>
       <div className="grid grid-cols-4 gap-3 my-3">
-        <button class="btn gap-2 bg-red-100 border-0 text-red-500 font-bold normal-case text-md px-0">
+        <button className="btn gap-2 bg-red-100 border-0 text-red-500 font-bold normal-case text-md px-0">
           <XCircleIcon className="h-6 w-6 text-red-500" />
           Cancel
         </button>
-        <button class="btn gap-2 bg-blue-100 border-0 text-blue-500 font-bold normal-case text-md px-0">
+        <button className="btn gap-2 bg-blue-100 border-0 text-blue-500 font-bold normal-case text-md px-0">
           <HandIcon className="h-6 w-6 text-blue-500" />
           Hold
         </button>
-        <button class="btn gap-2 bg-blue-100 border-0 text-blue-500 font-bold normal-case text-md px-0">
+        <button className="btn gap-2 bg-blue-100 border-0 text-blue-500 font-bold normal-case text-md px-0">
           <CurrencyDollarIcon className="h-6 w-6 text-blue-500" />
           Discount
         </button>
         <button
           onClick={() => PayButtonHandling("payNow", grandTotal)}
-          class="btn gap-2 bg-blue-100 border-0 text-blue-500 font-bold normal-case text-md px-0"
+          className="btn gap-2 bg-blue-100 border-0 text-blue-500 font-bold normal-case text-md px-0"
         >
           <CashIcon className="h-6 w-6 text-blue-500" />
           Pay Now

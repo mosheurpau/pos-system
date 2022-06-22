@@ -7,9 +7,10 @@ import {
   CreditCardIcon,
   UserIcon,
   XCircleIcon,
+  SearchIcon,
 } from "@heroicons/react/outline";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBagShopping } from "@fortawesome/free-solid-svg-icons";
+import { faBagShopping, faBarcode } from "@fortawesome/free-solid-svg-icons";
 
 const Shop = () => {
   const [products, setProducts] = useState([]);
@@ -133,25 +134,55 @@ const Shop = () => {
           {/* show all products shop  */}
           {payCancel && (
             <div className=" md:order-2 mx-auto border-2 p-5">
+              {/* product search option and Barcode scanner */}
+              <div className="mb-3 mt-0">
+                <form>
+                  <label
+                    for="default-search"
+                    className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300"
+                  >
+                    Search
+                  </label>
+                  <div class="relative">
+                    <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                      <SearchIcon className="h-6 w-6 text-gray-500" />
+                    </div>
+                    <input
+                      type="search"
+                      id="default-search"
+                      className="block p-4 pl-10 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                      placeholder="Search Products..."
+                      required
+                    />
+                    <button
+                      type="submit"
+                      className="text-white absolute right-2.5 bottom-2.5 bg-gray-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                    >
+                      <FontAwesomeIcon icon={faBarcode} className="mx-2" />
+                    </button>
+                  </div>
+                </form>
+              </div>
+
               {/* All Categories filtering button  */}
               <div className="mb-3">
-                <button class="btn btn-sm btn-outline mr-3 mb-3 text-black normal-case rounded-sm focus:text-blue-500 text-sm">
+                <button className="btn btn-sm btn-outline mr-3 mb-3 text-black normal-case rounded-sm focus:text-blue-500 text-sm">
                   <label for="all-categories-modal">All Categories</label>
                 </button>
-                <button class="btn btn-sm btn-outline  mr-3 mb-3 text-black normal-case rounded-sm focus:text-blue-500 text-sm">
+                <button className="btn btn-sm btn-outline  mr-3 mb-3 text-black normal-case rounded-sm focus:text-blue-500 text-sm">
                   Electronic
                 </button>
-                <button class="btn btn-sm btn-outline  mr-3 mb-3 text-black normal-case rounded-sm focus:text-blue-500 text-sm">
+                <button className="btn btn-sm btn-outline  mr-3 mb-3 text-black normal-case rounded-sm focus:text-blue-500 text-sm">
                   Home & Lifestyle
                 </button>
-                <button class="btn btn-sm btn-outline  mr-3 mb-3 text-black normal-case rounded-sm focus:text-blue-500 text-sm">
+                <button className="btn btn-sm btn-outline  mr-3 mb-3 text-black normal-case rounded-sm focus:text-blue-500 text-sm">
                   Men Fashion
                 </button>
-                <button class="btn btn-sm btn-outline  mr-3 mb-3 text-black normal-case rounded-sm focus:text-blue-500 text-sm">
+                <button className="btn btn-sm btn-outline  mr-3 mb-3 text-black normal-case rounded-sm focus:text-blue-500 text-sm">
                   Women Fashion
                 </button>
               </div>
-              <div className="grid grid-cols-3 md:grid-cols-3 lg:grid-cols-5 gap-3 ">
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 ">
                 {products.map((product) => (
                   <Product
                     key={product.id}
@@ -164,13 +195,13 @@ const Shop = () => {
                 <input
                   type="checkbox"
                   id="all-categories-modal"
-                  class="modal-toggle"
+                  className="modal-toggle"
                 />
-                <div class="modal">
-                  <div class="modal-box relative">
+                <div className="modal">
+                  <div className="modal-box relative">
                     <label
                       for="all-categories-modal"
-                      class="btn btn-sm btn-circle absolute right-2 top-2"
+                      className="btn btn-sm btn-circle absolute right-2 top-2"
                     >
                       ✕
                     </label>
@@ -180,61 +211,61 @@ const Shop = () => {
                       </h2>
                     </div>
                     <div className="my-3">
-                      <button class="btn btn-sm btn-outline  mr-3 mb-3 text-black normal-case rounded-sm focus:text-blue-500 text-sm">
+                      <button className="btn btn-sm btn-outline  mr-3 mb-3 text-black normal-case rounded-sm focus:text-blue-500 text-sm">
                         All Categories
                       </button>
-                      <button class="btn btn-sm btn-outline  mr-3 mb-3 text-black normal-case rounded-sm focus:text-blue-500 text-sm">
+                      <button className="btn btn-sm btn-outline  mr-3 mb-3 text-black normal-case rounded-sm focus:text-blue-500 text-sm">
                         Electronic
                       </button>
-                      <button class="btn btn-sm btn-outline  mr-3 mb-3 text-black normal-case rounded-sm focus:text-blue-500 text-sm">
+                      <button className="btn btn-sm btn-outline  mr-3 mb-3 text-black normal-case rounded-sm focus:text-blue-500 text-sm">
                         Home & Lifestyle
                       </button>
-                      <button class="btn btn-sm btn-outline  mr-3 mb-3 text-black normal-case rounded-sm focus:text-blue-500 text-sm">
+                      <button className="btn btn-sm btn-outline  mr-3 mb-3 text-black normal-case rounded-sm focus:text-blue-500 text-sm">
                         Men Fashion
                       </button>
-                      <button class="btn btn-sm btn-outline  mr-3 mb-3 text-black normal-case rounded-sm focus:text-blue-500 text-sm">
+                      <button className="btn btn-sm btn-outline  mr-3 mb-3 text-black normal-case rounded-sm focus:text-blue-500 text-sm">
                         Women Fashion
                       </button>
-                      <button class="btn btn-sm btn-outline  mr-3 mb-3 text-black normal-case rounded-sm focus:text-blue-500 text-sm">
+                      <button className="btn btn-sm btn-outline  mr-3 mb-3 text-black normal-case rounded-sm focus:text-blue-500 text-sm">
                         Electronics
                       </button>
-                      <button class="btn btn-sm btn-outline  mr-3 mb-3 text-black normal-case rounded-sm focus:text-blue-500 text-sm">
+                      <button className="btn btn-sm btn-outline  mr-3 mb-3 text-black normal-case rounded-sm focus:text-blue-500 text-sm">
                         Toys
                       </button>
-                      <button class="btn btn-sm btn-outline  mr-3 mb-3 text-black normal-case rounded-sm focus:text-blue-500 text-sm">
+                      <button className="btn btn-sm btn-outline  mr-3 mb-3 text-black normal-case rounded-sm focus:text-blue-500 text-sm">
                         Electronic
                       </button>
-                      <button class="btn btn-sm btn-outline  mr-3 mb-3 text-black normal-case rounded-sm focus:text-blue-500 text-sm">
+                      <button className="btn btn-sm btn-outline  mr-3 mb-3 text-black normal-case rounded-sm focus:text-blue-500 text-sm">
                         Home & Lifestyle
                       </button>
-                      <button class="btn btn-sm btn-outline  mr-3 mb-3 text-black normal-case rounded-sm focus:text-blue-500 text-sm">
+                      <button className="btn btn-sm btn-outline  mr-3 mb-3 text-black normal-case rounded-sm focus:text-blue-500 text-sm">
                         Men Fashion
                       </button>
-                      <button class="btn btn-sm btn-outline  mr-3 mb-3 text-black normal-case rounded-sm focus:text-blue-500 text-sm">
+                      <button className="btn btn-sm btn-outline  mr-3 mb-3 text-black normal-case rounded-sm focus:text-blue-500 text-sm">
                         Women Fashion
                       </button>
-                      <button class="btn btn-sm btn-outline  mr-3 mb-3 text-black normal-case rounded-sm focus:text-blue-500 text-sm">
+                      <button className="btn btn-sm btn-outline  mr-3 mb-3 text-black normal-case rounded-sm focus:text-blue-500 text-sm">
                         Electronics
                       </button>
-                      <button class="btn btn-sm btn-outline  mr-3 mb-3 text-black normal-case rounded-sm focus:text-blue-500 text-sm">
+                      <button className="btn btn-sm btn-outline  mr-3 mb-3 text-black normal-case rounded-sm focus:text-blue-500 text-sm">
                         Toys
                       </button>
-                      <button class="btn btn-sm btn-outline  mr-3 mb-3 text-black normal-case rounded-sm focus:text-blue-500 text-sm">
+                      <button className="btn btn-sm btn-outline  mr-3 mb-3 text-black normal-case rounded-sm focus:text-blue-500 text-sm">
                         Electronic
                       </button>
-                      <button class="btn btn-sm btn-outline  mr-3 mb-3 text-black normal-case rounded-sm focus:text-blue-500 text-sm">
+                      <button className="btn btn-sm btn-outline  mr-3 mb-3 text-black normal-case rounded-sm focus:text-blue-500 text-sm">
                         Home & Lifestyle
                       </button>
-                      <button class="btn btn-sm btn-outline  mr-3 mb-3 text-black normal-case rounded-sm focus:text-blue-500 text-sm">
+                      <button className="btn btn-sm btn-outline  mr-3 mb-3 text-black normal-case rounded-sm focus:text-blue-500 text-sm">
                         Men Fashion
                       </button>
-                      <button class="btn btn-sm btn-outline  mr-3 mb-3 text-black normal-case rounded-sm focus:text-blue-500 text-sm">
+                      <button className="btn btn-sm btn-outline  mr-3 mb-3 text-black normal-case rounded-sm focus:text-blue-500 text-sm">
                         Women Fashion
                       </button>
-                      <button class="btn btn-sm btn-outline  mr-3 mb-3 text-black normal-case rounded-sm focus:text-blue-500 text-sm">
+                      <button className="btn btn-sm btn-outline  mr-3 mb-3 text-black normal-case rounded-sm focus:text-blue-500 text-sm">
                         Electronics
                       </button>
-                      <button class="btn btn-sm btn-outline  mr-3 mb-3 text-black normal-case rounded-sm focus:text-blue-500 text-sm">
+                      <button className="btn btn-sm btn-outline  mr-3 mb-3 text-black normal-case rounded-sm focus:text-blue-500 text-sm">
                         Toys
                       </button>
                     </div>
@@ -580,7 +611,7 @@ const Shop = () => {
                     </div>
                     <label className="label">
                       <a
-                        to="#"
+                        href="/"
                         className="label-text-alt link link-hover text-blue-500 font-bold flex"
                       >
                         <PlusIcon className="mr-2 h-4 w-4 text-blue-500 font-bold" />

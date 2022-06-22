@@ -136,7 +136,7 @@ const Shop = () => {
 
   return (
     <div className="mx-auto">
-      <div className="mt-10">
+      <div className="mt-2">
         <div className="grid grid-cols-1 gap-2 md:grid-cols-2 mx-5">
           {/* show all products shop  */}
           {payCancel && (
@@ -286,7 +286,7 @@ const Shop = () => {
           {payNow && (
             <div className="order-2">
               {/* Show total order Amount  */}
-              <div className="flex justify-between items-center px-10 py-5 rounded-md text-black bg-gray-100 mb-3">
+              <div className="flex justify-between items-center px-5 py-3 rounded-md text-black bg-gray-100 my-3">
                 <h5 className="text-lg">Order Amount</h5>
                 <h5 className="text-3xl font-bold">
                   {" "}
@@ -574,10 +574,7 @@ const Shop = () => {
                   <StopIcon className="h-6 w-6 text-blue-500" />
                   Hold Orders
                 </button>
-                <button
-                  onClick={() => PayButtonHandling("payNow", grandTotal)}
-                  className="btn gap-2 bg-blue-100 border-0 text-blue-500 font-bold normal-case text-md px-0"
-                >
+                <button className="btn gap-2 bg-blue-100 border-0 text-blue-500 font-bold normal-case text-md px-0">
                   <PlusCircleIcon className="h-6 w-6 text-blue-500" />
                   New Item
                 </button>

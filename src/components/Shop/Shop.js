@@ -79,49 +79,44 @@ const Shop = () => {
   // cart handling
   const handleAddToCart = (selectedProduct) => {
     // console.log(selectedProduct);
-    let newCart = [];
     const exists = cart.find((product) => product.id === selectedProduct.id);
-    if (!exists) {
+    let newCart = [];
+    if (exists) {
+      newCart = cart.map((item) => {
+        if (item.id === selectedProduct.id) {
+          item.quantity = item.quantity + 1;
+        }
+        return item;
+      });
+    } else {
       selectedProduct.quantity = 1;
       newCart = [...cart, selectedProduct];
-    } else {
-      const rest = cart.filter((product) => product.id !== selectedProduct.id);
-      exists.quantity = exists.quantity + 1;
-      newCart = [...rest, exists];
     }
     setCart(newCart);
   };
 
   // quantity handling for plus button
   const handlePlusQuantity = (selected) => {
-    let plusCart = [];
-    const exists = cart.find((product) => product.id === selected.id);
-    if (!exists) {
-      plusCart = [...cart, selected];
-    } else {
-      const rest = cart.filter((product) => product.id !== selected.id);
-      exists.quantity = exists.quantity + 1;
-      plusCart = [...rest, exists];
-    }
-    setCart(plusCart);
+    const result = cart.map((item) => {
+      if (item.id === selected.id) {
+        item.quantity = item.quantity + 1;
+      }
+      return item;
+    });
+    setCart(result);
     setPayCancel(true);
     setPayNow(false);
   };
 
   // quantity handling for minus button
   const handleMinusQuantity = (selected) => {
-    let MinusCart = [];
-    const exists = cart.find((product) => product.id === selected.id);
-    if (!exists) {
-      MinusCart = [...cart, selected];
-    } else {
-      const rest = cart.filter((product) => product.id !== selected.id);
-      if (exists?.quantity > 0) {
-        exists.quantity = exists.quantity - 1;
+    const result = cart.map((item) => {
+      if (item.id === selected.id && item.quantity > 0) {
+        item.quantity = item.quantity - 1;
       }
-      MinusCart = [...rest, exists];
-    }
-    setCart(MinusCart);
+      return item;
+    });
+    setCart(result);
     setPayCancel(true);
     setPayNow(false);
   };

@@ -132,14 +132,33 @@ const Shop = () => {
         <div className="grid grid-cols-1 gap-2 md:grid-cols-2 mx-5">
           {/* show all products shop */}
           {payCancel && (
-            <div className="grid grid-cols-3 md:grid-cols-3 lg:grid-cols-5 gap-3 mx-auto md:order-2 border-2 p-5">
-              {products.map((product) => (
-                <Product
-                  key={product.id}
-                  product={product}
-                  handleAddToCart={handleAddToCart}
-                ></Product>
-              ))}
+            <div className=" md:order-2 mx-auto border-2 p-5">
+              <div className="mb-3">
+                <button class="btn btn-sm btn-outline mr-3 mb-3 text-black normal-case rounded-sm focus:text-blue-500 text-sm">
+                  All Categories
+                </button>
+                <button class="btn btn-sm btn-outline  mr-3 mb-3 text-black normal-case rounded-sm focus:text-blue-500 text-sm">
+                  Electronic
+                </button>
+                <button class="btn btn-sm btn-outline  mr-3 mb-3 text-black normal-case rounded-sm focus:text-blue-500 text-sm">
+                  Home & Lifestyle
+                </button>
+                <button class="btn btn-sm btn-outline  mr-3 mb-3 text-black normal-case rounded-sm focus:text-blue-500 text-sm">
+                  Men Fashion
+                </button>
+                <button class="btn btn-sm btn-outline  mr-3 mb-3 text-black normal-case rounded-sm focus:text-blue-500 text-sm">
+                  Women Fashion
+                </button>
+              </div>
+              <div className="grid grid-cols-3 md:grid-cols-3 lg:grid-cols-5 gap-3 ">
+                {products.map((product) => (
+                  <Product
+                    key={product.id}
+                    product={product}
+                    handleAddToCart={handleAddToCart}
+                  ></Product>
+                ))}
+              </div>
             </div>
           )}
 

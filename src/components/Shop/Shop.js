@@ -8,6 +8,8 @@ import {
   UserIcon,
   XCircleIcon,
 } from "@heroicons/react/outline";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBagShopping } from "@fortawesome/free-solid-svg-icons";
 
 const Shop = () => {
   const [products, setProducts] = useState([]);
@@ -130,7 +132,7 @@ const Shop = () => {
         <div className="grid grid-cols-1 gap-2 md:grid-cols-2 mx-5">
           {/* show all products shop */}
           {payCancel && (
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 mx-auto md:order-2 border-2 p-5">
+            <div className="grid grid-cols-3 md:grid-cols-3 lg:grid-cols-5 gap-3 mx-auto md:order-2 border-2 p-5">
               {products.map((product) => (
                 <Product
                   key={product.id}
@@ -194,7 +196,7 @@ const Shop = () => {
 
                 {/* All Payment system from  */}
                 <div className="col-span-2">
-                  <div className="mb-10 mx-10">
+                  <div className="mb-10 mx-auto">
                     {/* show cash Payment system from */}
                     {cash && (
                       <div>
@@ -222,6 +224,29 @@ const Shop = () => {
                               placeholder="Your Address"
                               required
                             />
+                          </div>
+                          <div className="flex flex-wrap items-center justify-evenly mt-64 mb-10">
+                            <div className="mb-5">
+                              <button
+                                onClick={() => PayButtonHandling("payCancel")}
+                                className="btn gap-2 bg-red-100 border-0 text-red-500 normal-case text-lg px-5"
+                              >
+                                <XCircleIcon className="h-6 w-6 text-red-500" />
+                                Cancel
+                              </button>
+                            </div>
+                            <div className="mb-5">
+                              <button
+                                type="submit"
+                                className="btn gap-2 bg-blue-500 border-0 text-white normal-case text-md px-3 text-md md:text-lg"
+                              >
+                                <FontAwesomeIcon
+                                  icon={faBagShopping}
+                                  className="mx-2"
+                                />
+                                Complete Payment
+                              </button>
+                            </div>
                           </div>
                         </form>
                       </div>
@@ -263,6 +288,29 @@ const Shop = () => {
                               required
                             />
                           </div>
+                          <div className="flex flex-wrap items-center justify-evenly mt-64 mb-10">
+                            <div className="mb-5">
+                              <button
+                                onClick={() => PayButtonHandling("payCancel")}
+                                className="btn gap-2 bg-red-100 border-0 text-red-500 normal-case text-lg px-5"
+                              >
+                                <XCircleIcon className="h-6 w-6 text-red-500" />
+                                Cancel
+                              </button>
+                            </div>
+                            <div className="mb-5">
+                              <button
+                                type="submit"
+                                className="btn gap-2 bg-blue-500 border-0 text-white normal-case text-md px-3 text-md md:text-lg"
+                              >
+                                <FontAwesomeIcon
+                                  icon={faBagShopping}
+                                  className="mx-2"
+                                />
+                                Complete Payment
+                              </button>
+                            </div>
+                          </div>
                         </form>
                       </div>
                     )}
@@ -286,6 +334,29 @@ const Shop = () => {
                               placeholder="Account Number"
                               required
                             />
+                          </div>
+                          <div className="flex flex-wrap items-center justify-evenly mt-64 mb-10">
+                            <div className="mb-5">
+                              <button
+                                onClick={() => PayButtonHandling("payCancel")}
+                                className="btn gap-2 bg-red-100 border-0 text-red-500 normal-case text-lg px-5"
+                              >
+                                <XCircleIcon className="h-6 w-6 text-red-500" />
+                                Cancel
+                              </button>
+                            </div>
+                            <div className="mb-5">
+                              <button
+                                type="submit"
+                                className="btn gap-2 bg-blue-500 border-0 text-white normal-case text-md px-3 text-md md:text-lg"
+                              >
+                                <FontAwesomeIcon
+                                  icon={faBagShopping}
+                                  className="mx-2"
+                                />
+                                Complete Payment
+                              </button>
+                            </div>
                           </div>
                         </form>
                       </div>
@@ -311,28 +382,33 @@ const Shop = () => {
                               required
                             />
                           </div>
+
+                          <div className="flex flex-wrap items-center justify-evenly mt-64 mb-10">
+                            <div className="mb-5">
+                              <button
+                                onClick={() => PayButtonHandling("payCancel")}
+                                className="btn gap-2 bg-red-100 border-0 text-red-500 normal-case text-lg px-5"
+                              >
+                                <XCircleIcon className="h-6 w-6 text-red-500" />
+                                Cancel
+                              </button>
+                            </div>
+                            <div className="mb-5">
+                              <button
+                                type="submit"
+                                className="btn gap-2 bg-blue-500 border-0 text-white normal-case text-md px-3 text-md md:text-lg"
+                              >
+                                <FontAwesomeIcon
+                                  icon={faBagShopping}
+                                  className="mx-2"
+                                />
+                                Complete Payment
+                              </button>
+                            </div>
+                          </div>
                         </form>
                       </div>
                     )}
-                  </div>
-
-                  {/*  Payment cancel and Payment completed button  */}
-                  <div className="flex flex-wrap items-center justify-evenly mt-56 mb-10">
-                    <div className="mb-5">
-                      <button
-                        onClick={() => PayButtonHandling("payCancel")}
-                        className="btn gap-2 bg-red-100 border-0 text-red-500 normal-case text-2xl px-5"
-                      >
-                        <XCircleIcon className="h-6 w-6 text-red-500" />
-                        Cancel
-                      </button>
-                    </div>
-                    <div className="mb-5">
-                      <button className="btn gap-2 bg-blue-500 border-0 text-white normal-case text-md px-5 text-md md:text-2xl">
-                        <CashIcon className="h-6 w-6 text-white-500" />
-                        Complete Payment
-                      </button>
-                    </div>
                   </div>
                 </div>
               </div>

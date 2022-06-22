@@ -34,7 +34,7 @@ const Cart = ({
   return (
     <div>
       <div className="flex justify-between p-4 rounded bg-blue-100 ">
-        <div className="">
+        <div>
           <label for="add-customer-modal" class="flex modal-button">
             <UserCircleIcon className="h-6 w-6 text-blue-500" />
             <span className="text-blue-500 font-bold ml-2">Steve Jobs</span>

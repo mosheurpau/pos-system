@@ -130,12 +130,13 @@ const Shop = () => {
     <div className="mx-auto">
       <div className="mt-10">
         <div className="grid grid-cols-1 gap-2 md:grid-cols-2 mx-5">
-          {/* show all products shop */}
+          {/* show all products shop  */}
           {payCancel && (
             <div className=" md:order-2 mx-auto border-2 p-5">
+              {/* All Categories filtering button  */}
               <div className="mb-3">
                 <button class="btn btn-sm btn-outline mr-3 mb-3 text-black normal-case rounded-sm focus:text-blue-500 text-sm">
-                  All Categories
+                  <label for="all-categories-modal">All Categories</label>
                 </button>
                 <button class="btn btn-sm btn-outline  mr-3 mb-3 text-black normal-case rounded-sm focus:text-blue-500 text-sm">
                   Electronic
@@ -158,6 +159,87 @@ const Shop = () => {
                     handleAddToCart={handleAddToCart}
                   ></Product>
                 ))}
+
+                {/* All categories products modal */}
+                <input
+                  type="checkbox"
+                  id="all-categories-modal"
+                  class="modal-toggle"
+                />
+                <div class="modal">
+                  <div class="modal-box relative">
+                    <label
+                      for="all-categories-modal"
+                      class="btn btn-sm btn-circle absolute right-2 top-2"
+                    >
+                      ✕
+                    </label>
+                    <div>
+                      <h2 className="text-2xl text-center font-bold">
+                        Categories
+                      </h2>
+                    </div>
+                    <div className="my-3">
+                      <button class="btn btn-sm btn-outline  mr-3 mb-3 text-black normal-case rounded-sm focus:text-blue-500 text-sm">
+                        All Categories
+                      </button>
+                      <button class="btn btn-sm btn-outline  mr-3 mb-3 text-black normal-case rounded-sm focus:text-blue-500 text-sm">
+                        Electronic
+                      </button>
+                      <button class="btn btn-sm btn-outline  mr-3 mb-3 text-black normal-case rounded-sm focus:text-blue-500 text-sm">
+                        Home & Lifestyle
+                      </button>
+                      <button class="btn btn-sm btn-outline  mr-3 mb-3 text-black normal-case rounded-sm focus:text-blue-500 text-sm">
+                        Men Fashion
+                      </button>
+                      <button class="btn btn-sm btn-outline  mr-3 mb-3 text-black normal-case rounded-sm focus:text-blue-500 text-sm">
+                        Women Fashion
+                      </button>
+                      <button class="btn btn-sm btn-outline  mr-3 mb-3 text-black normal-case rounded-sm focus:text-blue-500 text-sm">
+                        Electronics
+                      </button>
+                      <button class="btn btn-sm btn-outline  mr-3 mb-3 text-black normal-case rounded-sm focus:text-blue-500 text-sm">
+                        Toys
+                      </button>
+                      <button class="btn btn-sm btn-outline  mr-3 mb-3 text-black normal-case rounded-sm focus:text-blue-500 text-sm">
+                        Electronic
+                      </button>
+                      <button class="btn btn-sm btn-outline  mr-3 mb-3 text-black normal-case rounded-sm focus:text-blue-500 text-sm">
+                        Home & Lifestyle
+                      </button>
+                      <button class="btn btn-sm btn-outline  mr-3 mb-3 text-black normal-case rounded-sm focus:text-blue-500 text-sm">
+                        Men Fashion
+                      </button>
+                      <button class="btn btn-sm btn-outline  mr-3 mb-3 text-black normal-case rounded-sm focus:text-blue-500 text-sm">
+                        Women Fashion
+                      </button>
+                      <button class="btn btn-sm btn-outline  mr-3 mb-3 text-black normal-case rounded-sm focus:text-blue-500 text-sm">
+                        Electronics
+                      </button>
+                      <button class="btn btn-sm btn-outline  mr-3 mb-3 text-black normal-case rounded-sm focus:text-blue-500 text-sm">
+                        Toys
+                      </button>
+                      <button class="btn btn-sm btn-outline  mr-3 mb-3 text-black normal-case rounded-sm focus:text-blue-500 text-sm">
+                        Electronic
+                      </button>
+                      <button class="btn btn-sm btn-outline  mr-3 mb-3 text-black normal-case rounded-sm focus:text-blue-500 text-sm">
+                        Home & Lifestyle
+                      </button>
+                      <button class="btn btn-sm btn-outline  mr-3 mb-3 text-black normal-case rounded-sm focus:text-blue-500 text-sm">
+                        Men Fashion
+                      </button>
+                      <button class="btn btn-sm btn-outline  mr-3 mb-3 text-black normal-case rounded-sm focus:text-blue-500 text-sm">
+                        Women Fashion
+                      </button>
+                      <button class="btn btn-sm btn-outline  mr-3 mb-3 text-black normal-case rounded-sm focus:text-blue-500 text-sm">
+                        Electronics
+                      </button>
+                      <button class="btn btn-sm btn-outline  mr-3 mb-3 text-black normal-case rounded-sm focus:text-blue-500 text-sm">
+                        Toys
+                      </button>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           )}

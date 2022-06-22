@@ -27,7 +27,9 @@ const Cart = ({
     total = total + product.price * product.quantity;
     shipping = shipping + product.shipping;
   }
+  // 10% tax calculation
   const tax = parseFloat((total * 0.1).toFixed(2));
+  // 5% discount calculation
   const discount = parseFloat((total * 0.05).toFixed(2));
   const grandTotal = total + shipping + tax;
 
